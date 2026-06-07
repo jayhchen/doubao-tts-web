@@ -154,39 +154,6 @@ fly apps open
 
 后续代码更新后再次运行 `fly deploy` 即可。
 
-## 发布容器镜像
-
-推送符合 SemVer 的 `v*.*.*` 标签时，GitHub Actions 会运行测试，并将多架构镜像发布到 GHCR：
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-`v1.0.0` 会生成以下镜像标签：
-
-- `ghcr.io/jayhchen/doubao-tts-web:v1.0.0`
-- `ghcr.io/jayhchen/doubao-tts-web:v1.0`
-- `ghcr.io/jayhchen/doubao-tts-web:v1`
-- `ghcr.io/jayhchen/doubao-tts-web:latest`
-
-镜像支持 `linux/amd64` 和 `linux/arm64`。首次发布后，需要在 GitHub Package 设置中将镜像可见性改为 Public，未登录的 Docker Compose 才能直接拉取。
-
-## 推送到 GitHub
-
-当前仓库已使用 `main` 分支、Conventional Commits 和重新整理后的提交历史。可以使用 GitHub CLI 创建公开仓库：
-
-```bash
-gh repo create doubao-tts-web --public --source=. --remote=origin --push
-```
-
-也可以先在 GitHub 创建空仓库，再执行：
-
-```bash
-git remote add origin git@github.com:jayhchen/doubao-tts-web.git
-git push -u origin main
-```
-
 ## 测试
 
 ```bash
@@ -208,7 +175,6 @@ Tim、Dacey 和 Stokie 的原生标注为美式英语。页面中的英音预设
 
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Docker Compose 环境变量](https://docs.docker.com/compose/how-tos/environment-variables/)
-- [GitHub Actions 发布 Docker 镜像](https://docs.github.com/actions/publishing-packages/publishing-docker-images)
 - [Fly.io Dockerfile 部署](https://fly.io/docs/languages-and-frameworks/dockerfile/)
 - [Fly.io fly.toml 配置](https://fly.io/docs/reference/configuration/)
 - [Fly.io Secrets](https://fly.io/docs/apps/secrets/)
