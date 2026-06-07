@@ -1,8 +1,6 @@
 services:
   app:
-    build:
-      context: .
-    image: doubao-tts-web:local
+    image: "${DOUBAO_TTS_IMAGE:-ghcr.io/jayhchen/doubao-tts-web:latest}"
     init: true
     restart: unless-stopped
     ports:
