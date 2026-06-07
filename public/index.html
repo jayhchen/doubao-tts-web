@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doubao TTS 2.0</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div class="eyebrow">LOCAL VOICE STUDIO</div>
+        <h1>Doubao TTS <span>2.0</span></h1>
+        <p>输入英文文本，生成可试听和下载的 MP3 音频。</p>
+        <div id="configStatus" class="status status-loading">检查 API Key...</div>
+      </header>
+
+      <form id="ttsForm" class="panel">
+        <section class="text-section">
+          <div class="label-row">
+            <label for="text">英文文本</label>
+            <span><strong id="charCount">0</strong> / 10000</span>
+          </div>
+          <textarea
+            id="text"
+            name="text"
+            maxlength="10000"
+            placeholder="The only way to do great work is to love what you do."
+            required
+          ></textarea>
+        </section>
+
+        <section class="settings-grid">
+          <label class="field setting-card voice-card">
+            <span>英文音色</span>
+            <select id="speakerPreset">
+              <optgroup label="英式英语 · 2.0">
+                <option
+                  value="zh_female_yingyujiaoxue_uranus_bigtts"
+                  data-instruction="Speak in clear, natural British English."
+                  selected
+                >
+                  Tina · 英式女声（默认）
+                </option>
+                <option
+                  value="en_male_tim_uranus_bigtts"
+                  data-instruction="Speak in a natural, polished British English accent."
+                >
+                  Tim · 英式男声预设
+                </option>
+                <option
+                  value="en_female_dacey_uranus_bigtts"
+                  data-instruction="Speak in a natural, polished British English accent."
+                >
+                  Dacey · 英式女声预设
+                </option>
+                <option
+                  value="en_female_stokie_uranus_bigtts"
+                  data-instruction="Speak in a natural, polished British English accent."
+                >
+                  Stokie · 英式女声预设
+                </option>
+              </optgroup>
+              <optgroup label="美式英语 · 2.0">
+                <option value="en_male_tim_uranus_bigtts">
+                  Tim · 美式男声
+                </option>
+                <option value="en_female_dacey_uranus_bigtts">
+                  Dacey · 美式女声
+                </option>
+                <option value="en_female_stokie_uranus_bigtts">
+                  Stokie · 美式女声
+                </option>
+              </optgroup>
+              <option value="custom">自定义音色 ID</option>
+            </select>
+            <small>
+              Tina 是官方标注的原生英式英语 2.0
+              音色；其余英音选项通过语音指令调整口音。
+            </small>
+          </label>
+
+          <label
+            id="customSpeakerField"
+            class="field setting-card custom-speaker-field hidden"
+          >
+            <span>自定义音色 ID</span>
+            <input
+              id="customSpeaker"
+              type="text"
+              placeholder="例如 zh_female_yingyujiaoxue_uranus_bigtts"
+            />
+          </label>
+        </section>
+
+        <section class="instruction-section">
+          <label class="field">
+            <span>语音指令（可选）</span>
+            <input
+              id="instruction"
+              type="text"
+              maxlength="500"
+              placeholder="例如：Speak slowly, warmly, and with a calm storytelling tone."
+            />
+            <small>豆包 TTS 2.0 会根据指令调整情绪、语气和节奏。</small>
+          </label>
+        </section>
+
+        <div class="action-row">
+          <button id="generateButton" type="submit">
+            <span class="button-label">生成音频</span>
+            <span class="button-loader" aria-hidden="true"></span>
+          </button>
+          <p id="message" role="status"></p>
+        </div>
+      </form>
+
+      <section id="result" class="panel result hidden">
+        <div>
+          <div class="eyebrow">GENERATED AUDIO</div>
+          <h2>音频已生成</h2>
+        </div>
+        <audio id="audioPlayer" controls></audio>
+        <a id="downloadLink" class="download" download="doubao-tts.mp3">
+          下载 MP3
+        </a>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

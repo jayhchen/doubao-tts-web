@@ -1,0 +1,22 @@
+{
+  "name": "doubao-tts-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A small web app for Volcengine Doubao Speech Synthesis 2.0",
+  "license": "MIT",
+  "keywords": [
+    "doubao",
+    "text-to-speech",
+    "tts",
+    "volcengine"
+  ],
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
