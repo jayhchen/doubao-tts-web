@@ -1,6 +1,6 @@
 # Doubao TTS Web
 
-一个轻量的英文文本转语音 Web 应用，后端调用火山引擎“豆包语音合成 2.0”V3 SSE 接口。可在本地运行，也可通过 Docker 部署到 Fly.io。
+一个轻量的英文文本转语音 Web 应用，后端调用火山引擎“豆包语音合成 2.0”V3 SSE 接口。可在本地运行，也可通过 Docker Compose 或 Fly.io 部署。
 
 > 本项目不是火山引擎官方项目。使用前请确认豆包语音服务的开通状态、计费方式和音色权限。
 
@@ -34,6 +34,9 @@ APP_PASSWORD=
 
 HOST=127.0.0.1
 PORT=3000
+
+# Docker Compose 对外端口
+DOCKER_PORT=3000
 ```
 
 启动应用：
@@ -45,6 +48,23 @@ npm start
 访问 <http://127.0.0.1:3000>。
 
 ## Docker
+
+推荐使用 Docker Compose。根目录的 `.env` 会用于 Compose 变量插值：
+
+```bash
+docker compose up -d --build
+```
+
+访问 <http://127.0.0.1:3000>。查看日志和停止服务：
+
+```bash
+docker compose logs -f
+docker compose down
+```
+
+如需修改宿主机端口，在 `.env` 中设置 `DOCKER_PORT`。容器内部始终监听 `0.0.0.0:3000`，并通过 `/healthz` 执行健康检查。
+
+也可以直接使用 Docker：
 
 ```bash
 docker build -t doubao-tts-web .
@@ -129,7 +149,7 @@ fly apps open
 
 ## 推送到 GitHub
 
-当前仓库已使用 `main` 分支并完成首次提交。可以使用 GitHub CLI 创建公开仓库：
+当前仓库已使用 `main` 分支、Conventional Commits 和重新整理后的提交历史。可以使用 GitHub CLI 创建公开仓库：
 
 ```bash
 gh repo create doubao-tts-web --public --source=. --remote=origin --push
@@ -161,6 +181,8 @@ Tim、Dacey 和 Stokie 的原生标注为美式英语。页面中的英音预设
 
 ## 官方文档
 
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Docker Compose 环境变量](https://docs.docker.com/compose/how-tos/environment-variables/)
 - [Fly.io Dockerfile 部署](https://fly.io/docs/languages-and-frameworks/dockerfile/)
 - [Fly.io fly.toml 配置](https://fly.io/docs/reference/configuration/)
 - [Fly.io Secrets](https://fly.io/docs/apps/secrets/)

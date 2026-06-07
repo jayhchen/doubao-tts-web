@@ -1,5 +1,5 @@
-# Change this to a globally unique Fly.io app name before creating the app.
-app = "doubao-tts-your-name"
+# Fly.io deployment configuration for https://doubao-tts.fly.dev/
+app = "doubao-tts"
 primary_region = "ams"
 
 [build]
@@ -25,4 +25,3 @@ primary_region = "ams"
 
 [[vm]]
   size = "shared-cpu-1x"
-  memory = "256mb"
