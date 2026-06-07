@@ -4,6 +4,8 @@
 
 > 本项目不是火山引擎官方项目。使用前请确认豆包语音服务的开通状态、计费方式和音色权限。
 
+![Doubao TTS Web 界面截图](./docs/assets/doubao-tts.webp)
+
 ## 功能
 
 - 输入英文文本并生成 MP3
@@ -38,6 +40,8 @@ PORT=3000
 # Docker Compose 对外端口
 DOCKER_PORT=3000
 ```
+
+获取 `VOLCENGINE_API_KEY`：[API Key 使用--豆包语音-火山引擎](https://www.volcengine.com/docs/6561/1816214)
 
 启动应用：
 
